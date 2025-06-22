@@ -16,8 +16,8 @@ LDD_GIT_SUBMODULES = YES
 define LDD_BUILD_CMDS
         @echo "LLD Build directory: $(@D)"
         @echo "LLD Target directory: $(TARGET_DIR)"
-        $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/misc-modules KERNELDIR=$(LINUX_DIR)
-        $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/scull KERNELDIR=$(LINUX_DIR)
+        $(MAKE) -C $(LINUX_DIR) M=$(@D)/misc-modules ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(TARGET_CROSS) modules
+        $(MAKE) -C $(LINUX_DIR) M=$(@D)/scull ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(TARGET_CROSS)
 endef
 
 # TODO add your writer, finder and finder-test utilities/scripts to the installation steps below
