@@ -25,8 +25,8 @@ define LDD_INSTALL_TARGET_CMDS
     @echo "LLD Build directory: $(@D)"
     @echo "LLD Target directory: $(TARGET_DIR)"
 
-    $(INSTALL) -m 0755 $(@D)/misc-modules/*.ko $(TARGET_DIR)/lib/modules/$(uname -r)/
-    $(INSTALL) -m 0755 $(@D)/scull/*.ko $(TARGET_DIR)/lib/modules/$(uname -r)/
+    $(INSTALL) -m 0755 $(@D)/misc-modules/*.ko $(TARGET_DIR)/lib/modules/$(LINUX_VERSION)
+    $(INSTALL) -m 0755 $(@D)/scull/*.ko $(TARGET_DIR)/lib/modules/$(LINUX_VERSION)
 
 endef
 
