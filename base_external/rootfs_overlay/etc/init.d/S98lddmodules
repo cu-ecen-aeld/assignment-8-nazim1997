@@ -79,7 +79,8 @@ start() {
   fi
 
   echo "Loading hello module"
-  modprobe /lib/modules/$(uname -r)/hello.ko
+  # modprobe /lib/modules/$(uname -r)/hello.ko
+  modprobe hello
 }
 
 stop() {
