@@ -13,10 +13,6 @@ git submodule update
 echo "Removing corrupted QEMU download..."
 rm -rf /github/home/.dl/qemu* 2>/dev/null || true
 
-# Your existing build commands (without the BR2_DL_DIR override)
-echo "running clean script"
-bash clean.sh
-echo "finished running clean script"
 
 set -e 
 cd `dirname $0`
