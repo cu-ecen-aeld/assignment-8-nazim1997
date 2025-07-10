@@ -1,2 +1,6 @@
 #!/bin/bash
-make -C buildroot distclean
+#Script to clean buildroot configuration
+
+cd buildroot
+make clean
+make distclean
