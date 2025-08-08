@@ -1,0 +1,48 @@
+#!/bin/sh
+
+start() {
+    module="aesdchar"
+    device="aesdchar"
+    mode="664"
+
+    insmod /lib/modules/$(uname -r)/$module.ko $* || exit 1
+
+    # retrieve major number
+    major=$(awk "\$2==\"$module\" {print \$1}" /proc/devices)
+
+    if [ ! -z ${major} ]; then
+        mknod /dev/${device} c $major 0
+        chmod $mode /dev/${device}
+    else
+        echo "No device found in /proc/devices for driver ${module} (this driver may not allocate a device)"
+    fi
+}
+
+stop() {
+    module="aesdchar"
+    device="aesdchar"
+
+    echo "removing aesdchar module"
+
+    rmmod $module || exit 1
+
+    rm -f /dev/${device}
+}
+
+case "$1" in
+start)
+  start
+  ;;
+stop)
+  stop
+  ;;
+restart)
+  stop
+  start
+  ;;
+*)
+  echo "Usage: $0 {start|stop|status|restart}"
+  ;;
+esac
+
+exit 0
